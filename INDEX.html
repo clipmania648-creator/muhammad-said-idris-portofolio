@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Said Idris — Inventory Controller,Auditor,Web Developer</title>
+<meta name="description" content="Portofolio Muhammad Said Idris, Inventory Controller & Auditor. Keahlian Microsoft Excel, Word, dan PowerPoint untuk pengelolaan persediaan dan audit internal.">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+<!-- link css -->
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+  :root{
+    --bg:#11150f;
+    --bg-elev:#1a2118;
+    --bg-elev-2:#212a1f;
+    --ink:#ece8d9;
+    --ink-muted:#97a08c;
+    --ink-faint:#6b7163;
+    --gold:#d9a441;
+    --rust:#b5482f;
+    --line:rgba(236,232,217,.12);
+    --font-display:'Bitter',Georgia,serif;
+    --font-body:'Work Sans',system-ui,-apple-system,sans-serif;
+    --font-mono:'IBM Plex Mono','Courier New',monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; scroll-padding-top:80px;}
+  body{
+    background-color:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--gold); color:var(--bg);}
+  a{color:var(--gold); text-decoration:none;}
+  a:hover{color:#f0c069;}
+  h1,h2,h3,h4{font-family:var(--font-display); color:var(--ink); margin:0;}
+  :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+
+  /* ---------- Shared section styles ---------- */
+  .section-padding{padding:5.5rem 0;}
+  .alt-bg{background-color:var(--bg-elev);}
+  .eyebrow{
+    display:inline-flex; align-items:center;
+    font-family:var(--font-mono);
+    font-size:.72rem; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--rust);
+    border-left:3px solid var(--rust);
+    padding-left:.6rem; margin-bottom:1rem;
+  }
+  .section-title{font-size:clamp(1.8rem,4vw,2.6rem); font-weight:700; margin-bottom:1rem;}
+  .section-lead{color:var(--ink-muted); max-width:620px;}
+
+  /* ---------- Reveal-on-scroll ---------- */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.visible{opacity:1; transform:translateY(0);}
+
+  /* ---------- Navbar ---------- */
+  .navbar-custom{
+    position:fixed; top:0; width:100%; z-index:1030;
+    background:rgba(17,21,15,.65);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;
+    transition:background .3s ease, border-color .3s ease;
+    padding:.85rem 0;
+  }
+  .navbar-custom.scrolled{background:rgba(17,21,15,.94); border-bottom-color:var(--line);}
+  .navbar-custom .navbar-brand{
+    font-family:var(--font-mono); color:var(--ink);
+    display:flex; align-items:center; gap:.6rem; font-size:.95rem;
+  }
+  .brand-tag{
+    border:1px solid var(--gold); color:var(--gold); font-weight:700;
+    padding:.15rem .5rem; border-radius:4px; font-size:.78rem; letter-spacing:.05em;
+  }
+  .navbar-custom .nav-link{
+    font-family:var(--font-mono); font-size:.78rem; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--ink-muted); padding:.55rem 1rem; position:relative;
+  }
+  .navbar-custom .nav-link.active,
+  .navbar-custom .nav-link:hover{color:var(--ink);}
+  .navbar-custom .nav-link.active::after{
+    content:''; position:absolute; left:1rem; right:1rem; bottom:.15rem; height:2px; background:var(--rust);
+  }
+  .navbar-toggler{border-color:var(--line); padding:.35rem .6rem;}
+  .navbar-toggler:focus{box-shadow:0 0 0 .2rem rgba(217,164,65,.25);}
+  .navbar-toggler-icon{
+    background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ece8d9' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100vh; display:flex; align-items:center; padding-top:5rem; position:relative; overflow:hidden;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:48px 48px; background-position:center;
+  }
+  .hero::after{
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(circle at 50% 35%, rgba(17,21,15,0) 0%, var(--bg) 78%);
+  }
+  .hero .container{position:relative; z-index:1;}
+  .hero-name{font-size:clamp(2.4rem,6vw,4.2rem); font-weight:700; line-height:1.08; margin:.25rem 0 1rem;}
+  .hero-role{font-family:var(--font-mono); font-size:clamp(1.05rem,2.4vw,1.35rem); color:var(--gold); min-height:1.8em;}
+  .hero-role::after{
+    content:''; display:inline-block; width:2px; height:1.05em; background:var(--gold);
+    margin-left:4px; vertical-align:text-bottom; animation:blink 1s step-end infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+  .hero-tagline{color:var(--ink-muted); max-width:480px; margin:1.25rem 0 2rem;}
+
+  /* ---------- Buttons ---------- */
+  .btn-stamp{
+    font-family:var(--font-mono); font-size:.78rem; letter-spacing:.14em; text-transform:uppercase;
+    background:var(--gold); color:var(--bg); border:1px solid var(--gold);
+    padding:.75rem 1.6rem; border-radius:4px; display:inline-block;
+    transition:background .2s ease, color .2s ease, transform .2s ease;
+  }
+  .btn-stamp:hover{background:transparent; color:var(--gold); transform:translateY(-2px);}
+  .btn-ledger{
+    font-family:var(--font-mono); font-size:.78rem; letter-spacing:.14em; text-transform:uppercase;
+    background:transparent; color:var(--ink); border:1px solid var(--line);
+    padding:.75rem 1.6rem; border-radius:4px; display:inline-block;
+    transition:border-color .2s ease, color .2s ease, transform .2s ease;
+  }
+  .btn-ledger:hover{border-color:var(--gold); color:var(--gold); transform:translateY(-2px);}
+
+  /* ---------- Stock card (hero) ---------- */
+  .stock-card{
+    position:relative; background:var(--bg-elev); border:1px solid var(--line); border-radius:8px;
+    padding:2rem 1.75rem; max-width:380px; margin:0 auto;
+    transform:rotate(-2deg); box-shadow:0 25px 60px -20px rgba(0,0,0,.6);
+  }
+  .stock-card::before,.stock-card::after{
+    content:''; position:absolute; width:18px; height:18px; background:var(--bg);
+    border:1px solid var(--line); border-radius:50%; top:-10px;
+  }
+  .stock-card::before{left:28px;}
+  .stock-card::after{right:28px;}
+  .stock-card-title{
+    font-family:var(--font-mono); font-size:.68rem; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--ink-faint); border-bottom:1px dashed var(--line); padding-bottom:.75rem; margin-bottom:.5rem;
+  }
+  .card-row{
+    display:flex; justify-content:space-between; gap:1rem; padding:.55rem 0;
+    border-bottom:1px dotted var(--line); font-family:var(--font-mono); font-size:.83rem;
+  }
+  .card-row:last-child{border-bottom:none;}
+  .card-label{color:var(--ink-faint); letter-spacing:.08em; flex-shrink:0;}
+  .card-value{color:var(--ink); text-align:right;}
+  .card-value.status-open{color:#8fb88a;}
+  .stamp{
+    position:absolute; top:-26px; right:-26px; width:84px; height:84px;
+    border:2px solid var(--gold); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    font-family:var(--font-mono); font-size:.72rem; letter-spacing:.08em; color:var(--gold);
+    text-transform:uppercase; transform:rotate(-12deg); background:rgba(217,164,65,.06);
+    animation:stampIn .6s ease-out .4s backwards;
+  }
+  @keyframes stampIn{from{transform:rotate(-12deg) scale(1.8); opacity:0;} to{transform:rotate(-12deg) scale(1); opacity:1;}}
+
+  /* ---------- About / stats ---------- */
+  .stat-card{background:var(--bg-elev); border:1px solid var(--line); border-radius:6px; padding:1.5rem; text-align:center; height:100%;}
+  .stat-number{font-family:var(--font-mono); font-size:2.1rem; font-weight:600; color:var(--gold); display:block;}
+  .stat-label{font-size:.75rem; color:var(--ink-muted); text-transform:uppercase; letter-spacing:.12em; margin-top:.35rem;}
+
+  /* ---------- Skills ---------- */
+  .skill-card{background:var(--bg); border:1px solid var(--line); border-radius:6px; padding:1.5rem; height:100%;}
+  .skill-icon{font-size:1.8rem; color:var(--gold); margin-bottom:.75rem; display:block;}
+  .skill-name{font-weight:600; margin-bottom:.25rem;}
+  .skill-level{font-family:var(--font-mono); font-size:.74rem; color:var(--ink-muted); margin-bottom:.6rem;}
+  .skill-bar{height:6px; background:var(--bg-elev-2); border-radius:3px; overflow:hidden;}
+  .skill-fill{height:100%; width:0; background:var(--gold); border-radius:3px; transition:width 1.2s ease;}
+  .tag-pill{
+    display:inline-flex; align-items:center; font-family:var(--font-mono); font-size:.74rem;
+    letter-spacing:.1em; text-transform:uppercase; border:1px solid var(--line); border-radius:100px;
+    padding:.4rem 1rem; color:var(--ink-muted); margin:.25rem;
+  }
+
+  /* ---------- Timeline ---------- */
+  .timeline{position:relative; padding-left:2rem; border-left:2px solid var(--rust);}
+  .timeline-item{position:relative; padding-bottom:2.5rem;}
+  .timeline-item:last-child{padding-bottom:0;}
+  .timeline-item::before{
+    content:''; position:absolute; left:-2.42rem; top:.35rem; width:12px; height:12px; border-radius:50%;
+    background:var(--gold); border:2px solid var(--bg); box-shadow:0 0 0 2px var(--rust);
+  }
+  .timeline-date{font-family:var(--font-mono); font-size:.78rem; color:var(--gold); letter-spacing:.1em; margin-bottom:.35rem;}
+  .timeline-tag{
+    display:inline-block; font-family:var(--font-mono); font-size:.64rem; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--ink-faint); border:1px solid var(--line); border-radius:3px;
+    padding:.15rem .55rem; margin-bottom:.5rem;
+  }
+  .timeline-company{color:var(--ink-muted); font-size:.9rem; margin-bottom:.5rem;}
+
+  /* ---------- Projects (item cards) ---------- */
+  .item-card{
+    position:relative; background:var(--bg-elev); border:1px solid var(--line); border-radius:6px;
+    padding:1.75rem; height:100%; display:flex; flex-direction:column;
+    transition:transform .25s ease, border-color .25s ease;
+  }
+  .item-card:hover{transform:translateY(-6px); border-color:var(--gold);}
+  .item-code{font-family:var(--font-mono); font-size:.74rem; letter-spacing:.18em; color:var(--ink-faint);}
+  .item-badge{
+    position:absolute; top:1.5rem; right:1.5rem; font-family:var(--font-mono); font-size:.62rem;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--gold); border:1px solid var(--gold);
+    border-radius:100px; padding:.2rem .6rem;
+  }
+  .item-card h3{font-size:1.1rem; margin:.85rem 0 .5rem;}
+  .item-card p{color:var(--ink-muted); font-size:.9rem; flex-grow:1;}
+  .item-tag{font-family:var(--font-mono); font-size:.68rem; color:var(--ink-faint); letter-spacing:.1em; text-transform:uppercase; display:block; margin-bottom:.6rem;}
+  .item-link{font-family:var(--font-mono); font-size:.78rem; letter-spacing:.1em; text-transform:uppercase;}
+
+  /* ---------- Contact ---------- */
+  .contact-info-row{display:flex; align-items:center; gap:1rem; padding:1rem 0; border-bottom:1px dotted var(--line);}
+  .contact-info-row:last-child{border-bottom:none;}
+  .contact-icon{
+    width:42px; height:42px; border:1px solid var(--line); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; color:var(--gold); font-size:1.05rem; flex-shrink:0;
+  }
+  .contact-label{font-family:var(--font-mono); font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-faint);}
+  .contact-value{color:var(--ink);}
+  .form-label{font-family:var(--font-mono); font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-muted);}
+  .form-control{background:var(--bg-elev); border:1px solid var(--line); color:var(--ink);}
+  .form-control:focus{background:var(--bg-elev); border-color:var(--gold); box-shadow:0 0 0 3px rgba(217,164,65,.15); color:var(--ink);}
+  .form-control::placeholder{color:var(--ink-faint);}
+  .invalid-feedback{font-family:var(--font-mono); font-size:.74rem;}
+  #formSuccess{background:var(--bg-elev); border:1px solid var(--gold); color:var(--gold); font-family:var(--font-mono); font-size:.84rem; border-radius:6px;}
+
+  /* ---------- Footer ---------- */
+  .site-footer{border-top:1px solid var(--line); padding:2.5rem 0; text-align:center;}
+  .footer-name{font-family:var(--font-display); font-size:1.1rem; margin-bottom:.25rem;}
+  .footer-meta{font-family:var(--font-mono); font-size:.72rem; color:var(--ink-faint); letter-spacing:.12em;}
+  .social-row{display:flex; justify-content:center; gap:1rem; margin:1.1rem 0;}
+  .social-row a{
+    width:38px; height:38px; border:1px solid var(--line); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; color:var(--ink-muted);
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .social-row a:hover{color:var(--gold); border-color:var(--gold);}
+
+  /* ---------- Back to top ---------- */
+  #backToTop{
+    position:fixed; bottom:2rem; right:2rem; width:46px; height:46px; border-radius:50%;
+    background:var(--gold); color:var(--bg); border:none; display:flex; align-items:center; justify-content:center;
+    font-size:1.15rem; opacity:0; visibility:hidden; transform:translateY(10px);
+    transition:opacity .3s ease, transform .3s ease, visibility .3s ease; z-index:1000; cursor:pointer;
+  }
+  #backToTop.show{opacity:1; visibility:visible; transform:translateY(0);}
+
+  /* ---------- Responsive tweaks ---------- */
+  @media (max-width:991.98px){
+    .hero{min-height:auto; padding:7rem 0 4rem;}
+    .stock-card{transform:rotate(0deg); margin-top:2.5rem;}
+    .stamp{width:66px; height:66px; font-size:.6rem; top:-18px; right:-12px;}
+  }
+
+  /* ---------- Reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .reveal{opacity:1; transform:none; transition:none;}
+    .stamp{animation:none;}
+    .hero-role::after{animation:none;}
+    .skill-fill, #backToTop, .item-card, .btn-stamp, .btn-ledger{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-custom" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="#home">
+      <span class="brand-tag">MSI</span>
+      <span class="d-none d-sm-inline">Muhammad Said Idris</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Buka menu navigasi">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav gap-1">
+        <li class="nav-item"><a class="nav-link active" href="#home">Beranda</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">Profil</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Keahlian</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experience">Pengalaman</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Portofolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Kontak</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="home">
+  <div class="container">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-7">
+        <span class="eyebrow">Berkas Profil &middot; No. MSI-01</span>
+        <h1 class="hero-name">Muhammad Said<br>Idris</h1>
+        <div class="hero-role" id="typingRole" aria-live="polite"></div>
+        <p class="hero-tagline">
+          Mengelola dan memverifikasi persediaan dengan teliti — dari pencatatan stok harian
+          hingga laporan audit yang akurat dan dapat dipertanggungjawabkan.
+        </p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#projects" class="btn-stamp">Lihat Portofolio</a>
+          <a href="#contact" class="btn-ledger">Hubungi Saya</a>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="container text-center mt-4">
+    <img src="img/said foto.jpeg"
+         class="rounded-circle img-thumbnail"
+         width="300"
+         alt="Foto Saya">
+</div>
+      </div>
+      <div class="col-lg-12">
+        <div class="stock-card">
+          <span class="stamp">&#10003; VALID</span>
+          <div class="stock-card-title">Kartu Stok &middot; Data Diri</div>
+          <div class="card-row"><span class="card-label">Nama</span><span class="card-value">Muhammad Said Idris</span></div>
+          <div class="card-row"><span class="card-label">Jabatan</span><span class="card-value">Inventory Controller, Data Analisis, Auditor</span></div>
+          <div class="card-row"><span class="card-label">Lokasi</span><span class="card-value">Indonesia, Bekasi</span></div>
+          <div class="card-row"><span class="card-label">Tools</span><span class="card-value">Power Bi &middot; Excel &middot; Word &middot; PowerPoint</span></div>
+          <div class="card-row"><span class="card-label">Status</span><span class="card-value status-open">Open To Work</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= ABOUT ================= -->
+<section class="section-padding" id="about">
+  <div class="container">
+    <div class="row gy-5">
+      <div class="col-lg-7 reveal">
+        <span class="eyebrow">Profil</span>
+        <h2 class="section-title">Tentang Saya</h2>
+        <p class="section-lead">
+          Profesional kerja lebih dari 2 tahun sebagai Store Keeper, dengan tanggung jawab dalam
+          pengendalian stok, manajemen persediaan, stock opname, inventory monitoring, penerimaan dan
+          pengeluaran barang, dan memastikan akurasi data persediaan.   
+        </p>
+        <p style="color:var(--ink-muted)" class="mt-3">
+          Terampil dalam administrasi gudang,audit persediaan, analisis data stok, pengelolaan sistem inventori,
+          serta penggunaan Microsoft Dynamics GP dan Microsoft Office. Lulusan S1 Ilmu Komputer dari Universitas Harapan Medan.
+        </p>
+        <!-- Catatan: ganti dua paragraf di atas dengan profil/pengalaman Anda yang sebenarnya -->
+      </div>
+      <div class="col-lg-5 reveal">
+        <div class="row g-3">
+          <div class="col-6">
+            <div class="stat-card">
+              <span class="stat-number" data-target="5" data-suffix="+">0</span>
+              <span class="stat-label">Tahun Pengalaman</span>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="stat-card">
+              <span class="stat-number" data-target="98" data-suffix="%">0</span>
+              <span class="stat-label">Akurasi Stok</span>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="stat-card">
+              <span class="stat-number" data-target="100" data-suffix="%">0</span>
+              <span class="stat-label">Loyalitas</span>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="stat-card">
+              <span class="stat-number" data-target="100" data-suffix="+">0</span>
+              <span class="stat-label">SKU Dikelola</span>
+            </div>
+          </div>
+        </div>
+        <!-- Catatan: angka di atas masih contoh, sesuaikan dengan data Anda -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section class="section-padding alt-bg" id="skills">
+  <div class="container">
+    <div class="text-center mx-auto reveal" style="max-width:640px;">
+      <span class="eyebrow">Keahlian</span>
+      <h2 class="section-title">Kompetensi &amp; Tools</h2>
+      <p class="section-lead mx-auto">
+        Perangkat lunak yang saya gunakan setiap hari untuk pencatatan, analisis, dan pelaporan persediaan.
+      </p>
+    </div>
+    <div class="row g-4 mt-4">
+      <div class="col-md-4 reveal">
+        <div class="skill-card">
+          <i class="bi bi-file-earmark-excel skill-icon"></i>
+          <div class="skill-name">Microsoft Excel</div>
+          <div class="skill-level">Mahir — Rumus, ,Pivot Table, Hlookup, VLOOKUP</div>
+          <div class="skill-bar"><div class="skill-fill" data-value="90"></div></div>
+        </div>
+      </div>
+      <div class="col-md-4 reveal">
+        <div class="skill-card">
+          <i class="bi bi-file-earmark-word skill-icon"></i>
+          <div class="skill-name">Microsoft Word</div>
+          <div class="skill-level">Mahir — Laporan &amp; Dokumentasi</div>
+          <div class="skill-bar"><div class="skill-fill" data-value="85"></div></div>
+        </div>
+      </div>
+      <div class="col-md-4 reveal">
+        <div class="skill-card">
+          <i class="bi bi-file-earmark-ppt skill-icon"></i>
+          <div class="skill-name">Microsoft PowerPoint</div>
+          <div class="skill-level">Mahir — Presentasi Laporan Audit</div>
+          <div class="skill-bar"><div class="skill-fill" data-value="80"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5 reveal">
+      <span class="tag-pill">Rekonsiliasi Stok</span>
+      <span class="tag-pill">Audit Internal</span>
+      <span class="tag-pill">Manajemen Gudang</span>
+      <span class="tag-pill">Analisis Data</span>
+      <span class="tag-pill">Ketelitian Tinggi</span>
+      <span class="tag-pill">Kepatuhan SOP</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE / EDUCATION ================= -->
+<section class="section-padding" id="experience">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">Riwayat</span>
+      <h2 class="section-title">Pengalaman &amp; Pendidikan</h2>
+      <p class="section-lead">Lulusan S1 Komputer Dengan Jurusan Teknik Informatika, mempunyai pengalaman dengan keahlian :
+                              Manajemen Persediaan, Pengendalian Stok, Stock Opname, Inventory Monitoring, Pengelolaan
+                              Gudang, Penerimaan & Pengeluaran Barang, Inventory Accuracy, Administrasi Gudang, Microsoft
+                              Office, Microsoft Dynamics GP, Analisis Data Persediaan, Pembuatan Laporan Stok, FIFO (First In
+                              First Out), FEFO (First Expired First Out), Audit Persediaan.</p>
+    </div>
+    <div class="timeline mt-5">
+      <div class="timeline-item reveal">
+        <div class="timeline-date">Maret 2024 — April 2026</div>
+        <span class="timeline-tag">Pekerjaan</span>
+        <h3>StoreKeeper</h3>
+        <p class="timeline-company">PT Hiro Group Indonesia &middot; Sushi Hiro Sun Plaza Medan</p>
+        <p>Memantau dan memperbarui data stok harian untuk memastikan akurasi persediaan serta
+        ketersediaan barang operasional</p>
+        <p>Melaksanakan stock opname secara berkala dan melakukan rekonsiliasi antara stok fisik
+        dengan data sistem guna menjaga inventory accuracy</p>
+        <p>Menerima, memeriksa, dan mencatat barang masuk sesuai dokumen pengiriman untuk
+        memastikan ketepatan jumlah dan kualitas barang.</p>
+        <p>Menyiapkan, mengontrol, dan mendistribusikan barang keluar sesuai kebutuhan operasional
+        dengan memastikan ketepatan pencatatan stok.</p>
+        <p>Mengelola penyimpanan barang berdasarkan kategori dan standar gudang untuk
+        mendukung efisiensi pengambilan serta pengendalian persediaan.</p>
+        <p>Mengidentifikasi dan melaporkan barang rusak, hilang, atau kedaluwarsa sebagai bagian
+        dari pengendalian stok dan mitigasi selisih persediaan.</p>
+        <p>Berkoordinasi dengan berbagai departemen untuk memastikan ketersediaan stok,
+        kelancaran distribusi barang, dan efektivitas operasional.</p>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-date">Desember 2021 — Maret 2024</div>
+        <span class="timeline-tag">Pekerjaan</span>
+        <h3>Server</h3>
+        <p class="timeline-company">PT Hiro Group Indonesia &middot; Sushi Go Sun Plaza Medan</p>
+        <p>Memberikan pelayanan pelanggan secara profesional untuk memastikan kepuasan dan
+        pengalaman pelanggan yang optimal. </p>
+        <p>Mencatat serta menyajikan pesanan secara akurat sesuai standar pelayanan perusahaan</p>
+        <p>Mengoperasikan sistem POS untuk memproses transaksi pembayaran secara tepat dan efisien.</p>
+        <p>MMelakukan up-selling produk guna mendukung peningkatan penjualan dan nilai transaksi pelanggan.</p>
+        <p>Berkolaborasi dengan tim operasional untuk memastikan pelayanan yang cepat, akurat, dan berkualitas</p>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-date">Desember 2021 — Maret 2024</div>
+        <span class="timeline-tag">Pekerjaan</span>
+        <h3>Server</h3>
+        <p class="timeline-company">Gasken Bar (DNA Group) &middot; Medan</p>
+        <p>Menyajikan minuman kepada pelanggan secara cepat dan akurat sesuai standar operasional perusahaan.</p>
+        <p>Mencatat pesanan serta memastikan ketepatan penyajian produk sesuai permintaan pelanggan.</p>
+        <p>Memberikan pelayanan pelanggan yang ramah dan profesional untuk meningkatkan kepuasan pelanggan.</p>
+        <p>Mendukung operasional bar dengan membantu bartender dan memastikan kelancaran proses pelayanan.</p>
+        <p>Memantau ketersediaan stok minuman serta menjaga kebersihan area bar dan peralatan kerja.</p>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-date">2021 — 2025</div>
+        <span class="timeline-tag">Universitas Harapan Medan</span>
+        <h3>S1 Teknik Informatika</h3>
+        <p class="timeline-company">Universitas Contoh &middot; Jakarta</p>
+        <p>Fokus pada Data Analisis, persediaan, audit, dan sistem informasi.</p>
+      </div>
+    </div>
+    <!-- Catatan: tambahkan / hapus .timeline-item sesuai jumlah pengalaman Anda -->
+  </div>
+</section>
+
+<!-- ================= PROJECTS / PORTFOLIO ================= -->
+<section class="section-padding alt-bg" id="projects">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">Portofolio</span>
+      <h2 class="section-title">Proyek &amp; Pekerjaan Terkait</h2>
+      <p class="section-lead">Contoh proyek — ganti dengan pekerjaan nyata yang pernah Anda kerjakan, lengkap dengan tautan dokumen jika tersedia.</p>
+    </div>
+    <div class="row g-4 mt-4">
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="item-card">
+          <div class="item-code">ITEM-001</div>
+          <span class="item-badge">Terverifikasi</span>
+          <h3>Rekonsiliasi Stok Gudang</h3>
+          <span class="item-tag">Excel &middot; Audit</span>
+          <p>Menyusun rekonsiliasi stok bulanan dan menurunkan selisih persediaan dari 4% menjadi di bawah 1%.</p>
+          <a href="#" class="item-link">Lihat Detail &rarr;</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="item-card">
+          <div class="item-code">ITEM-002</div>
+          <span class="item-badge">Terverifikasi</span>
+          <h3>Laporan Audit Internal Persediaan</h3>
+          <span class="item-tag">Word &middot; PowerPoint</span>
+          <p>Menyusun laporan temuan audit dan rekomendasi perbaikan SOP gudang untuk manajemen.</p>
+          <a href="#" class="item-link">Lihat Detail &rarr;</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="item-card">
+          <div class="item-code">ITEM-003</div>
+          <span class="item-badge">Terverifikasi</span>
+          <h3>Dashboard Monitoring Stok</h3>
+          <span class="item-tag">Excel &middot; Pivot Table</span>
+          <p>Membuat dashboard pemantauan stok real-time berbasis Excel untuk seluruh gudang cabang.</p>
+          <a href="#" class="item-link">Lihat Detail &rarr;</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="item-card">
+          <div class="item-code">ITEM-004</div>
+          <span class="item-badge">Terverifikasi</span>
+          <h3>SOP Pengelolaan Gudang</h3>
+          <span class="item-tag">Word &middot; Dokumentasi</span>
+          <p>Menyusun dokumen SOP penerimaan, penyimpanan, dan pengeluaran barang untuk standardisasi proses gudang.</p>
+          <a href="#" class="item-link">Lihat Detail &rarr;</a>
+        </div>
+      </div>
+    </div>
+    <!-- Catatan: tambahkan / ganti kartu proyek sesuai portofolio nyata Anda -->
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="section-padding" id="contact">
+  <div class="container">
+    <div class="row gy-5">
+      <div class="col-lg-5 reveal">
+        <span class="eyebrow">Kontak</span>
+        <h2 class="section-title">Mari Berdiskusi</h2>
+        <p class="section-lead">Tertarik bekerja sama atau ingin tahu lebih lanjut? Hubungi saya melalui salah satu kanal berikut.</p>
+        <div class="mt-4">
+          <div class="contact-info-row">
+            <div class="contact-icon"><i class="bi bi-envelope"></i></div>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value">said.idris011@gmail.com</div>
+            </div>
+          </div>
+          <div class="contact-info-row">
+            <div class="contact-icon"><i class="bi bi-whatsapp"></i></div>
+            <div>
+              <div class="contact-label">WhatsApp</div>
+              <div class="contact-value">089508167988</div>
+            </div>
+          </div>
+          <div class="contact-info-row">
+            <div class="contact-icon"><i class="bi bi-geo-alt"></i></div>
+            <div>
+              <div class="contact-label">Lokasi</div>
+              <div class="contact-value">Indonesia</div>
+            </div>
+          </div>
+          <div class="contact-info-row">
+            <div class="contact-icon"><i class="bi bi-linkedin"></i></div>
+            <div>
+              <div class="contact-label">LinkedIn</div>
+              <div class="contact-value">https://www.linkedin.com/in/said-idris/</div>
+            </div>
+          </div>
+        </div>
+        <!-- Catatan: ganti data kontak di atas dengan informasi Anda -->
+      </div>
+      <div class="col-lg-7 reveal">
+        <form id="contactForm" class="row g-3" novalidate>
+          <div class="col-md-6">
+            <label for="name" class="form-label">Nama</label>
+            <input type="text" class="form-control" id="name" required>
+            <div class="invalid-feedback">Mohon isi nama Anda.</div>
+          </div>
+          <div class="col-md-6">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" required>
+            <div class="invalid-feedback">Mohon isi email yang valid.</div>
+          </div>
+          <div class="col-12">
+            <label for="subject" class="form-label">Subjek</label>
+            <input type="text" class="form-control" id="subject" required>
+            <div class="invalid-feedback">Mohon isi subjek pesan.</div>
+          </div>
+          <div class="col-12">
+            <label for="message" class="form-label">Pesan</label>
+            <textarea class="form-control" id="message" rows="4" required></textarea>
+            <div class="invalid-feedback">Mohon isi pesan Anda.</div>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn-stamp">Kirim Pesan</button>
+          </div>
+          <div class="col-12">
+            <div id="formSuccess" class="alert d-none mb-0" role="alert">
+              &#10003; Pesan tercatat. Catatan: form ini belum terhubung ke server — sambungkan ke layanan
+              seperti Formspree, atau backend Anda sendiri, agar pesan benar-benar terkirim.
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-name">Muhammad Said Idris</div>
+    <div class="footer-meta">Inventory Controller &amp; Auditor</div>
+    <div class="social-row">
+      <a href="https://mail.google.com/" target="_blank" aria-label="Email"><i class="bi bi-envelope"></i></a>
+      <a href="https://www.linkedin.com/in/said-idris/" target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+      <a href="https://wa.me/6289508167988?text=Halo%20saya%20tertarik%20dengan%20profil%20Anda"
+   target="_blank" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+    </div>
+    <div class="footer-meta">&copy; <span id="year"></span> &mdash; Said</div>
+  </div>
+</footer>
+
+<button id="backToTop" aria-label="Kembali ke atas"><i class="bi bi-arrow-up"></i></button>
+
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
+<script src="js/script.js"></script>
+</body>
+</html>
